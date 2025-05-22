@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Enter Password</title>
+  <style>
+    body {
+      display: flex;
+      height: 100vh;
+      justify-content: center;
+      align-items: center;
+      background: #330033;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      color: #ffccff;
+    }
+    .password-box {
+      background: rgba(40, 0, 60, 0.85);
+      padding: 30px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 0 30px rgba(255, 105, 180, 0.5);
+      border: 1px solid #cc00ff;
+      width: 90%;
+      max-width: 400px;
+    }
+    input[type="password"] {
+      width: 100%;
+      padding: 12px;
+      border-radius: 15px;
+      border: 2px solid #cc00ff;
+      font-size: 1.2rem;
+      background: rgba(50, 0, 50, 0.7);
+      color: #fff;
+      margin-bottom: 20px;
+    }
+    input[type="password"]:focus {
+      outline: none;
+      border-color: #ff1493;
+      box-shadow: 0 0 15px rgba(255, 20, 147, 0.5);
+    }
+    button {
+      background: linear-gradient(to right, #ff1493, #cc00ff);
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      font-size: 1.2rem;
+      border-radius: 15px;
+      cursor: pointer;
+      width: 100%;
+      box-shadow: 0 5px 15px rgba(255, 20, 147, 0.4);
+      transition: all 0.3s ease;
+    }
+    button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(255, 20, 147, 0.6);
+    }
+  </style>
+</head>
+<body>
+  <div class="password-box">
+    <h2>Enter Password to Access Secret Box</h2>
+    <input type="password" id="password" placeholder="Your password here" />
+    <button onclick="checkPassword()">Unlock 💖</button>
+  </div>
+
+  <script>
+    function checkPassword() {
+      const pwd = document.getElementById('password').value;
+      const correctPassword = "LETSGOO"; // <-- change this!
+
+      if (pwd === correctPassword) {
+        // Change the URL below to where you want to redirect on correct password:
+        window.location.href = "PURPLE.html";
+      } else {
+        alert("Wrong password! Try again.");
+      }
+    }
+  </script>
+</body>
+</html>
+

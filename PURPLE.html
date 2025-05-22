@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Secret Love Messages 💌</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background: linear-gradient(135deg, #2c003e, #4b005c, #330033);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #ffccff;
+      overflow: hidden;
+      position: relative;
+      padding: 20px;
+    }
+    
+    .container {
+      background: rgba(40, 0, 60, 0.85);
+      border-radius: 20px;
+      padding: 25px;
+      width: 100%;
+      max-width: 500px;
+      text-align: center;
+      box-shadow: 0 0 30px rgba(255, 105, 180, 0.5);
+      border: 1px solid #cc00ff;
+      backdrop-filter: blur(5px);
+      z-index: 10;
+      position: relative;
+    }
+    
+    h1 {
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
+      background: linear-gradient(to right, #ff69b4, #ff1493, #cc00ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 10px;
+    }
+    
+    .subtitle {
+      font-size: clamp(0.9rem, 3vw, 1.1rem);
+      color: #ffb3ff;
+      margin-bottom: 20px;
+    }
+    
+    textarea {
+      width: 100%;
+      height: clamp(120px, 30vh, 200px);
+      border: 2px solid #cc00ff;
+      border-radius: 15px;
+      padding: 15px;
+      font-size: 1rem;
+      background: rgba(50, 0, 50, 0.7);
+      color: #fff;
+      resize: none;
+      margin-bottom: 20px;
+      transition: all 0.3s ease;
+    }
+    
+    textarea:focus {
+      outline: none;
+      border-color: #ff1493;
+      box-shadow: 0 0 15px rgba(255, 20, 147, 0.5);
+    }
+    
+    textarea::placeholder {
+      color: #cc99cc;
+    }
+    
+    button {
+      background: linear-gradient(to right, #ff1493, #cc00ff);
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      font-size: clamp(1rem, 3vw, 1.2rem);
+      border-radius: 15px;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(255, 20, 147, 0.4);
+      transition: all 0.3s ease;
+      width: 100%;
+      max-width: 200px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(255, 20, 147, 0.6);
+    }
+    
+    button:active {
+      transform: translateY(1px);
+    }
+    
+    /* Floating elements */
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: #ff1493;
+      transform: rotate(45deg);
+      animation: float 8s infinite ease-in-out;
+      opacity: 0.7;
+    }
+    
+    .heart::before, .heart::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: #ff1493;
+      border-radius: 50%;
+    }
+    
+    .heart::before { top: -10px; left: 0; }
+    .heart::after { left: -10px; top: 0; }
+    
+    .emoji-rain {
+      position: absolute;
+      font-size: 20px;
+      animation: emoji-fall linear infinite;
+      z-index: 5;
+    }
+    
+    @keyframes float {
+      0% { transform: translateY(0) rotate(45deg) scale(1); opacity: 0.7; }
+      50% { transform: translateY(-300px) rotate(45deg) scale(1.1); opacity: 0.9; }
+      100% { transform: translateY(-600px) rotate(45deg) scale(0.8); opacity: 0; }
+    }
+    
+    @keyframes emoji-fall {
+      0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+    }
+  </style>
+
+</head>
+<body>
+  <div class="container">
+    <h1>💖 THEEKU'S SECRET BOX 💖</h1>
+    <p class="subtitle">🌹💌 Whisper your secrets, dreams,complains, everything to me 💌🌹</p>
+    <form id="loveForm">
+      <textarea name="message" placeholder=" 💜 Type your heart out... ✨🌙" required></textarea>
+      <input type="hidden" name="_captcha" value="false">
+      <button type="submit">Send My Love 💘</button>
+    </form>
+  </div>
+
+  <!-- Confetti JS -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+  
+  <script>
+    // Create floating elements
+    const emojis = ['💜', '💖', '🔥', '🌹', '💌', '✨', '🌙', '💘', '💕'];
+    
+    // Hearts
+    for (let i = 0; i < 25; i++) {
+      createHeart();
+    }
+    
+    // Emoji rain
+    for (let i = 0; i < 15; i++) {
+      setTimeout(createEmoji, i * 300);
+    }
+    
+    setInterval(createEmoji, 1000);
+    
+    function createHeart() {
+      let heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.top = Math.random() * 100 + 'vh';
+      heart.style.animationDuration = 5 + Math.random() * 8 + 's';
+      heart.style.animationDelay = Math.random() * 5 + 's';
+      heart.style.opacity = 0.3 + Math.random() * 0.7;
+      document.body.appendChild(heart);
+    }
+    
+    function createEmoji() {
+      let emoji = document.createElement('div');
+      emoji.classList.add('emoji-rain');
+      emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      emoji.style.left = Math.random() * 100 + 'vw';
+      emoji.style.top = '-50px';
+      emoji.style.animationDuration = 3 + Math.random() * 7 + 's';
+      emoji.style.fontSize = (15 + Math.random() * 20) + 'px';
+      document.body.appendChild(emoji);
+      
+      setTimeout(() => emoji.remove(), 10000);
+    }
+    
+    // Form submission with confetti
+   document.getElementById('loveForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+
+  confetti({
+    particleCount: 100,
+    spread: 70,
+    origin: { y: 0.6 }
+  });
+
+  const message = this.message.value;
+
+  // Replace with your Google Form URL (formResponse URL)
+  const googleFormURL = "https://docs.google.com/forms/d/e/1FAIpQLSdXw53aDIUhxd70vv9ut4-9Uz9BLZ7HAhrah247-YtxyoeMuA/formResponse";
+
+  // Replace 'entry.1234567890' with your actual field's entry ID from Google Form
+  const formData = new FormData();
+  formData.append('entry.23401906', message);
+
+  fetch(googleFormURL, {
+    method: 'POST',
+    mode: 'no-cors',
+    body: formData
+  }).then(() => {
+    setTimeout(() => {
+      window.location.href = "thankyou.html"; // redirect after submit
+    }, 800);
+  }).catch(() => {
+    alert('Oops! Something went wrong. Try again.');
+  });
+});
+  </script>
+</body>
+</html>

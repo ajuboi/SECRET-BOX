@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Message Received! 💌</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background: linear-gradient(135deg, #2c003e, #4b005c, #330033);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #ffccff;
+      overflow: hidden;
+      position: relative;
+      padding: 20px;
+      text-align: center;
+    }
+    
+    .container {
+      background: rgba(40, 0, 60, 0.85);
+      border-radius: 20px;
+      padding: 30px;
+      width: 100%;
+      max-width: 500px;
+      box-shadow: 0 0 30px rgba(255, 105, 180, 0.5);
+      border: 1px solid #cc00ff;
+      backdrop-filter: blur(5px);
+      z-index: 10;
+    }
+    
+    h1 {
+      font-size: clamp(1.8rem, 5vw, 2.5rem);
+      background: linear-gradient(to right, #ff69b4, #ff1493, #cc00ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 20px;
+    }
+    
+    p {
+      font-size: clamp(1rem, 3vw, 1.2rem);
+      color: #ffb3ff;
+      margin-bottom: 25px;
+      line-height: 1.6;
+    }
+    
+    .emoji-storm {
+      font-size: 2rem;
+      margin: 20px 0;
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+    
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: #ff1493;
+      transform: rotate(45deg);
+      animation: float 8s infinite ease-in-out;
+      opacity: 0.7;
+    }
+    
+    .heart::before, .heart::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: #ff1493;
+      border-radius: 50%;
+    }
+    
+    .heart::before { top: -10px; left: 0; }
+    .heart::after { left: -10px; top: 0; }
+    
+    @keyframes float {
+      0% { transform: translateY(0) rotate(45deg) scale(1); opacity: 0.7; }
+      50% { transform: translateY(-300px) rotate(45deg) scale(1.1); opacity: 0.9; }
+      100% { transform: translateY(-600px) rotate(45deg) scale(0.8); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="emoji-storm">💌✨🔥💖</div>
+    <h1>MESSAGE RECEIVED! 🚀</h1>
+    <p>Yasss queen! 👑 I got your message and I'm ON IT!<br>
+    Checking rn like it's my last DM 💯<br><br>
+    No cap, you're the best frfr 💜<br>
+    Stay tuned for my reply! ⏳</p>
+    <div class="emoji-storm">💘🌙✨💞</div>
+  </div>
+
+  <!-- Confetti JS -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+  
+  <script>
+    // Create floating hearts
+    for (let i = 0; i < 20; i++) {
+      createHeart();
+    }
+    
+    function createHeart() {
+      let heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.top = Math.random() * 100 + 'vh';
+      heart.style.animationDuration = 5 + Math.random() * 8 + 's';
+      heart.style.animationDelay = Math.random() * 5 + 's';
+      heart.style.opacity = 0.3 + Math.random() * 0.7;
+      document.body.appendChild(heart);
+    }
+    
+    // Trigger confetti blast
+    function party() {
+      confetti({
+        particleCount: 150,
+        spread: 70,
+        origin: { y: 0.6 }
+      });
+      
+      setTimeout(party, 1500);
+    }
+    
+    // Initial blast
+    setTimeout(() => {
+      party();
+    }, 300);
+  </script>
+</body>
+</html>
